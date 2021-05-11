@@ -3,7 +3,7 @@ public class Player {
     private int chips;
     private Space bet;
 
-    Player(string name, int startingChips)
+    Player(String name, int startingChips)
     {
         this.name = name;
         chips = startingChips;
