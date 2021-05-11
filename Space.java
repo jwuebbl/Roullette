@@ -3,7 +3,7 @@ public class Space {
     private int redBlk;     // 1 = red, 0 = black.
     private int oddEven;    // 1 = odd, 0 = even.
     private int block;      // 1-12 = 1, 13-24 = 2, 25 - 36 = 3
-    private int row;        // 
+    private int row;        // 1, 2 , 3.
 
     public Space(int number, int redBlk, int oddEven, int block, int row)
     {
@@ -13,6 +13,11 @@ public class Space {
         this.oddEven    = oddEven;
         this.block      = block;
         this.row        = row;
+    }
+
+    public int getNumber()
+    {
+        return number;
     }
     
 }

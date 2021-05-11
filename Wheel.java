@@ -1,5 +1,8 @@
+import java.util.Random;
+
+
 public class Wheel {
-    Space [] wheel = new Space[38]; // 38 spaces including 0 and 00.
+    Space [] spaces = new Space[38]; // 38 spaces including 0 and 00.
 
     Wheel()
     {
@@ -9,7 +12,7 @@ public class Wheel {
         int row;
 
         // Creates all the spaces that are not green.
-        for (int i = 1; i <= wheel.length - 2; i++)
+        for (int i = 1; i <= spaces.length - 2; i++)
         {
             // Setting the redBlk flag.
             if (i < 11)
@@ -43,13 +46,20 @@ public class Wheel {
             else {row = 3;}
 
             Space newSpace = new Space(i, redBlk, oddEven, block, row);
-            wheel[i-1] = newSpace;
+            spaces[i-1] = newSpace;
         }
 
         // Last 2 are the greenNumbers 0 and 00
-        wheel[36] = new Space(37, 0, 0, 0, 0);
-        wheel[37] = new Space(38, 0, 0, 0, 0);
+        spaces[36] = new Space(37, 0, 0, 0, 0);
+        spaces[37] = new Space(38, 0, 0, 0, 0);
 
         System.out.println("Wheel Successfully Created.");
+    }
+
+    public Space spin()
+    {
+        Random rand = new Random(); // No argument constructor pulls the current time.
+        int temp = rand.nextInt(39);
+        return spaces[temp];
     }
 }
