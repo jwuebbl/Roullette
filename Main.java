@@ -6,9 +6,5 @@ public class Main{
 
         player.placeBets();
 
-
-
-        
-
     }
 }
