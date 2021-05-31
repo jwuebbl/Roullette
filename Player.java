@@ -1,8 +1,5 @@
 import java.util.Scanner;
 
-import javax.lang.model.util.ElementScanner14;
-
-
 public class Player {
     private String name;
     private int chips;
