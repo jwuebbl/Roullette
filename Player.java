@@ -2,17 +2,19 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class Player {
+    // Used to read in the interactions with the player. 
+    private Scanner cin = new Scanner(System.in);
+
+    // A Player's key characteristics.
     private String name;
     private int chips;
-    private int bet_RedOrBlack = 2;
-    private int bet_OddOrEven = 2;
-    private int block = 0;
-    private int row = 0;
 
 
+    // Constructors
     Player()                                {this.name = "Sim"; this.chips = 100;}
     Player(String name, int startingChips)  {this.name = name; chips = startingChips;}
 
+    // Used to fill the array that prints the bet options.
     private String [] initializeBettingOptions()
     {
         String [] betOptions = new String[6];
@@ -25,14 +27,28 @@ public class Player {
         return betOptions;
     }
 
+    // Used to set the boolean that controls the placing bets 'while' loop.
+    private boolean setContinueBettingFlag()
+    {
+        String playAgain;
+        System.out.print("\t\tEnter \"S\" to stop placing bets, or enter any other key to continue: ");
+        playAgain = cin.next();
+
+        // Only the first character needs to be "S" or "s"
+        if ( playAgain.matches("S(.*)") || playAgain.matches("s(.*)") ) {
+            System.out.println("User is no longer making bets.");
+            return false;
+        }
+        return true;
+    }
+
+
     public void placeBets()
     {
         // Declaring and Initializing Variables
-        Scanner cin = new Scanner(System.in);
-        String [] betOptions = initializeBettingOptions();
-        boolean continueBetting = true;
-        int     betSelection;
-        String    playAgain;
+        String []   betOptions      = initializeBettingOptions();
+        boolean     continueBetting = true;
+        int         betSelection;
 
         // Betting Actions Begin Here
         System.out.println("Player " + this.name + ", Place your bets.");
@@ -53,20 +69,13 @@ public class Player {
             switch (betSelection) {
                 case 1:
                     System.out.println("\t\tBetting Red or Black:");
-                    //TODO: Insert Red or Black
-                    System.out.print("\t\tPress Y/y to place more bets: ");
-                    playAgain = cin.next();
-                    if ( playAgain == "Y" || playAgain == "y" )
-                        placeBets();
-                    else
-                        break;
-                    break;
-
-                
-            
-                default:
-                    break;
+                    //TODO: Create method to bet on red or black.
+                        // 1. User selects to bet Red or Black.
+                        // 2. User selects how much they want to bet on Red or Black.
+                        // 3. The bet is placed.
+                    continueBetting = setContinueBettingFlag();
             }
+            
         }
         cin.close();
     }
