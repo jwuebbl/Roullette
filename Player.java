@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Player {
     private String name;
@@ -31,6 +32,7 @@ public class Player {
         String [] betOptions = initializeBettingOptions();
         boolean continueBetting = true;
         int     betSelection;
+        String    playAgain;
 
         // Betting Actions Begin Here
         System.out.println("Player " + this.name + ", Place your bets.");
@@ -41,8 +43,30 @@ public class Player {
                 System.out.println(betOptions[i]);
             }
 
+            // User Selection
             System.out.print("\tUser Selected: ");
             betSelection = cin.nextInt();
+
+            // Bet
+            // Each print will start with atleast 2 tabs.
+            // Stubout actions for each case.
+            switch (betSelection) {
+                case 1:
+                    System.out.println("\t\tBetting Red or Black:");
+                    //TODO: Insert Red or Black
+                    System.out.print("\t\tPress Y/y to place more bets: ");
+                    playAgain = cin.next();
+                    if ( playAgain == "Y" || playAgain == "y" )
+                        placeBets();
+                    else
+                        break;
+                    break;
+
+                
+            
+                default:
+                    break;
+            }
         }
         cin.close();
     }
