@@ -5,6 +5,7 @@ public class Main{
         Player player = new Player();
 
         player.placeBets();
+        // player.printBets();
 
     }
 }
