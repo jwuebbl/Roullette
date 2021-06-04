@@ -6,7 +6,7 @@ public class Player {
     // Used to read in the interactions with the player. 
     private Scanner cin = new Scanner(System.in);
 
-    // A Player's key characteristics.
+    // Player's characteristics.
     private String name;
     private int chips;
     private List<Bet> bets = new ArrayList<Bet>();    
@@ -15,6 +15,11 @@ public class Player {
     // Constructors
     Player()                                {this.name = "Sim"; this.chips = 100;}
     Player(String name, int startingChips)  {this.name = name; chips = startingChips;}
+
+    // Getters
+    public int getChips() {
+        return chips;
+    }
 
     // Used to fill the array that prints the bet options.
     private String [] initializeBettingOptions()
@@ -45,18 +50,25 @@ public class Player {
         return true;
     }
 
+    // Allows the player to make their bet(s) on red or black.
     private void betRedOrBlack()
     {   
         System.out.print("\t\t(B)lack or (R)ed: ");
         String color = cin.next();
-
+        int betAmount;
+        
         if ( color.matches("B(.*)") || color.matches("b(.*)") ) {
             System.out.print("\t\t\tHow much do you want to bet on Black?: ");
-            bets.add(new Bet("Black", cin.nextInt()));
+            betAmount = cin.nextInt();
+            chips -= betAmount;
+            bets.add(new Bet("Black", betAmount));
+            
         }
         else if ( color.matches("R(.*)") || color.matches("r(.*)") ) {
             System.out.print("\t\t\tHow much do you want to bet on Red?: ");
-            bets.add(new Bet("Red", cin.nextInt()));
+            betAmount = cin.nextInt();
+            chips -= betAmount;
+            bets.add(new Bet("Red", betAmount));
         }
         else {
             System.out.print("\t\t\tInvalid Selection, Do you wish to bet on Red or Black? (Y/N): ");
@@ -65,9 +77,9 @@ public class Player {
                 betRedOrBlack();
             }
         }
-        // If the user doesn't make a bet or doesn't select 'Y' or 'y' after being reminded the function should exit.
     }
 
+    // How the Player decides what he wants to bet on.
     public void placeBets()
     {
         // Declaring and Initializing Variables
@@ -84,25 +96,58 @@ public class Player {
                 System.out.println(betOptions[i]);
             }
 
-            // User Selection
+            // Player's bet selection.
             System.out.print("\tUser Selected: Option ");
             betSelection = cin.nextInt();
 
-            // Bet
+            // Player placing bets.
             // Each print will start with atleast 2 tabs.
             switch (betSelection) {
                 case 1:
                     // Red or Black
                     betRedOrBlack();
                     continueBetting = setContinueBettingFlag();
+
+                // TODO: Odds/Evens, Thirds, Rows, and individual spaces.
             }            
         }
         cin.close();
     }
 
-    public void printBets() {
-        for (int i = 0; i < bets.size(); i++) {
-            System.out.println(bets.get(i));
+
+
+
+    // Loops through all the players bets and compares them to the winning space.
+    public void checkBets(Space winningSpace) {
+        System.out.println("The winning space is: " + winningSpace.toString());
+        
+        // Check Red or Black
+        for (int i = 0; i < bets.size(); i++ ) { 
+            if ( winningSpace.getColor().matches(bets.get(i).color) ) {
+                payoutColorBet(bets.get(i));
+            }
+        
+
+        // Check Odds or Evens
+
+        // Check Thirds
+
+        // Check Rows
+
+        // Check Individual Numbers
         }
     }
+
+    // Just prints all the Player's bets.
+    public void printBets() {
+        for (int i = 0; i < bets.size(); i++) {
+            System.out.println(bets.get(i).toString());
+        }
+    }
+
+    // Payout for winning a Red or Black bet.
+    public void payoutColorBet(Bet bet) {
+        chips += (2 * bet.betAmount);
+    }
 }
+
