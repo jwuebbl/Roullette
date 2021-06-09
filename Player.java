@@ -79,6 +79,34 @@ public class Player {
         }
     }
 
+    // Allows the player to make their bet(s) on odd or even.
+    private void betOddOrEven() {
+        System.out.print("\t\t(O)dd or (E)ven: ");
+        String oddEven = cin.next();
+        int betAmount;
+        
+        if ( oddEven.matches("O(.*)") || oddEven.matches("o(.*)") ) {
+            System.out.print("\t\t\tHow much do you want to bet on Odds?: ");
+            betAmount = cin.nextInt();
+            chips -= betAmount;
+            bets.add(new Bet("Odd", betAmount));
+        }
+        else if ( oddEven.matches("E(.*)") || oddEven.matches("e(.*)") ) {
+            System.out.print("\t\t\tHow much do you want to bet on Evens?: ");
+            betAmount = cin.nextInt();
+            chips -= betAmount;
+            bets.add(new Bet("Even", betAmount));
+        }
+        else {
+            System.out.print("\t\t\tInvalid Selection, Do you wish to bet on Odd or Even? (Y/N): ");
+            String continueBetting = cin.next();
+            if ( continueBetting.matches("Y(.*)") || continueBetting.matches("y(.*)") ) {
+                betOddOrEven();
+            }
+        }
+    }
+
+
     // How the Player decides what he wants to bet on.
     public void placeBets()
     {
@@ -109,6 +137,10 @@ public class Player {
                     continueBetting = setContinueBettingFlag();
 
                 // TODO: Odds/Evens, Thirds, Rows, and individual spaces.
+                case 2:
+                    // Odd or Even
+                    betOddOrEven();
+                    continueBetting = setContinueBettingFlag();
             }            
         }
         cin.close();
@@ -123,12 +155,24 @@ public class Player {
         
         // Check Red or Black
         for (int i = 0; i < bets.size(); i++ ) { 
-            if ( winningSpace.getColor().matches(bets.get(i).color) ) {
+            if ( winningSpace.getColor().matches(bets.get(i).betType) ) {
                 payoutColorBet(bets.get(i));
             }
-        
 
         // Check Odds or Evens
+        int oddOrEven = winningSpace.getNumber() % 2;
+        String winningSpaceOddOrEven;
+        if ( oddOrEven == 0 ) {
+            winningSpaceOddOrEven = "Even";
+        }
+        else {
+            winningSpaceOddOrEven = "Odd";
+        }
+        for (i = 0; i < bets.size(); i++ ) {
+            if ( winningSpaceOddOrEven == bets.get(i).betType ) {
+                payoutColorBet(bets.get(i));
+            }
+        }
 
         // Check Thirds
 

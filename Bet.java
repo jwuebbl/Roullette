@@ -1,11 +1,11 @@
 public class Bet {
-    String color = null;
+    String betType;
     int    betAmount = 0;
 
     
-    // For betting Red or Black
-    Bet(String color, int amount){
-        this.color = color;
+    // For betting Red/Black or Odd
+    Bet(String betType, int amount){
+        this.betType = betType;
         this.betAmount = amount;
     }
 
@@ -14,6 +14,6 @@ public class Bet {
 
 
     public String toString() {
-        return color + " Bet Amount: " + betAmount;
+        return betType + " Bet Amount: " + betAmount;
     }
 }
