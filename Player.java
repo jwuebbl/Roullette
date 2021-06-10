@@ -136,7 +136,6 @@ public class Player {
                     betRedOrBlack();
                     continueBetting = setContinueBettingFlag();
 
-                // TODO: Odds/Evens, Thirds, Rows, and individual spaces.
                 case 2:
                     // Odd or Even
                     betOddOrEven();
