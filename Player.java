@@ -106,6 +106,38 @@ public class Player {
         }
     }
 
+    private void betThirds() {
+        System.out.println("\t\tWhich Thirds?: #1-12 (1), #12-24 (2), #24-36 (3)");
+        String thirdSelected = cin.next();
+        int playerBetAmount;
+
+        if ( thirdSelected.matches("1(.*)") ) {
+            System.out.print("\t\t\tHow much do you want to bet on the first third? (1-12): ");
+            playerBetAmount = cin.nextInt();
+            chips -= playerBetAmount;
+            bets.add(new Bet("Odd", playerBetAmount));
+        }
+        else if ( thirdSelected.matches("2(.*)") ) {
+            System.out.print("\t\t\tHow much do you want to bet on the second third? (12-24): ");
+            playerBetAmount = cin.nextInt();
+            chips -= playerBetAmount;
+            bets.add(new Bet("Odd", playerBetAmount));
+        }
+        else if ( thirdSelected.matches("3(.*)") ) {
+            System.out.print("\t\t\tHow much do you want to bet on the third third? (24-36): ");
+            playerBetAmount = cin.nextInt();
+            chips -= playerBetAmount;
+            bets.add(new Bet("Odd", playerBetAmount));
+        }
+        else {
+            System.out.print("\t\t\tInvalid Selection, Do you wish to bet on Odd or Even? (Y/N): ");
+            String continueBetting = cin.next();
+            if ( continueBetting.matches("Y(.*)") || continueBetting.matches("y(.*)") ) {
+                betThirds);
+            }
+        } 
+    }
+
 
     // How the Player decides what he wants to bet on.
     public void placeBets()
@@ -145,7 +177,7 @@ public class Player {
 
                 // Thirds
                 case 3:
-                    // betThirds();
+                    betThirds();
                     continueBetting = setContinueBettingFlag();
                     break;
 
