@@ -40,8 +40,22 @@ public class Space {
 
     }
 
+    public String getOddOrEven() {
+        if ( (number % 2) == 1  ) {
+            return "Odd";
+        }
+        else {
+            return "Even";
+        }
+    }
+
     public String getColor() {
-        return redBlk;
+        if ( redBlk.matches("1") ) {
+            return "Red";
+        }
+        else {
+            return "Black";
+        }
     }
     
     public String toString() {

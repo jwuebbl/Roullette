@@ -211,17 +211,8 @@ public class Player {
             }
         }
 
-        // Check Odds or Evens
-        int oddOrEven = winningSpace.getNumber() % 2;
-        String winningSpaceOddOrEven;
-        if ( oddOrEven == 0 ) {
-            winningSpaceOddOrEven = "Even";
-        }
-        else {
-            winningSpaceOddOrEven = "Odd";
-        }
-        for (int i = 0; i < bets.size(); i++ ) {
-            if ( winningSpaceOddOrEven == bets.get(i).betType ) {
+        for (int i = 0; i <bets.size(); i++ ) {
+            if (winningSpace.getOddOrEven().matches(bets.get(i).betType)) {
                 payoutColorBet(bets.get(i));
             }
         }
