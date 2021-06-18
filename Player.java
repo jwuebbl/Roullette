@@ -107,7 +107,7 @@ public class Player {
     }
 
     private void betThirds() {
-        System.out.println("\t\tWhich Thirds?: #1-12 (1), #12-24 (2), #24-36 (3)");
+        System.out.print("\t\tWhich Thirds?: #1-12 (1), #12-24 (2), #24-36 (3): ");
         String thirdSelected = cin.next();
         int playerBetAmount;
 
@@ -139,7 +139,7 @@ public class Player {
     }
 
     private void betRows() {
-        System.out.println("\t\tWhich Row? (1), (2), (3)");
+        System.out.print("\t\tWhich Row? (1), (2), (3): ");
         String thirdSelected = cin.next();
         int playerBetAmount;
 
@@ -214,7 +214,6 @@ public class Player {
             betSelection = cin.nextInt();
 
             // Player placing bets.
-            // Style Note: Each print will start with atleast 2 tabs.
             switch (betSelection) {
                 // Red or Black
                 case 1:
@@ -287,10 +286,12 @@ public class Player {
 
         // Check Numbers
         for (int i = 0; i < bets.size(); i++ ) {
-            int playerBetNumber = Integer.parseInt(bets.get(i).betType);
-            if ( winningSpace.getNumber() == playerBetNumber ) {
-                payoutNumberBet(bets.get(i));
-            }
+            try { 
+                int playerBetNumber = Integer.parseInt(bets.get(i).betType);
+                if ( winningSpace.getNumber() == playerBetNumber ) {
+                    payoutNumberBet(bets.get(i));
+                }
+            } catch ( Exception e) {}
         }
     }
 
