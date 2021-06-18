@@ -115,25 +115,25 @@ public class Player {
             System.out.print("\t\t\tHow much do you want to bet on the first third? (1-12): ");
             playerBetAmount = cin.nextInt();
             chips -= playerBetAmount;
-            bets.add(new Bet("Odd", playerBetAmount));
+            bets.add(new Bet("First Third", playerBetAmount));
         }
         else if ( thirdSelected.matches("2(.*)") ) {
-            System.out.print("\t\t\tHow much do you want to bet on the second third? (12-24): ");
+            System.out.print("\t\t\tHow much do you want to bet on the second third? (13-24): ");
             playerBetAmount = cin.nextInt();
             chips -= playerBetAmount;
-            bets.add(new Bet("Odd", playerBetAmount));
+            bets.add(new Bet("Second Third", playerBetAmount));
         }
         else if ( thirdSelected.matches("3(.*)") ) {
-            System.out.print("\t\t\tHow much do you want to bet on the third third? (24-36): ");
+            System.out.print("\t\t\tHow much do you want to bet on the third third? (25-36): ");
             playerBetAmount = cin.nextInt();
             chips -= playerBetAmount;
-            bets.add(new Bet("Odd", playerBetAmount));
+            bets.add(new Bet("Third Third", playerBetAmount));
         }
         else {
-            System.out.print("\t\t\tInvalid Selection, Do you wish to bet on Odd or Even? (Y/N): ");
+            System.out.print("\t\t\tInvalid Selection, Do you wish to bet on Thirds? (Y/N): ");
             String continueBetting = cin.next();
             if ( continueBetting.matches("Y(.*)") || continueBetting.matches("y(.*)") ) {
-                betThirds);
+                betThirds();
             }
         } 
     }
@@ -226,6 +226,11 @@ public class Player {
         }
 
         // Check Thirds
+        for (i = 0; i < bets.size(); i++ ) {
+            if ( winningSpace.getThird().matches(bets.get(i).betType) ) {
+                payoutThirdBet(bets.get(i));
+            }
+        }
 
         // Check Rows
 
@@ -241,8 +246,13 @@ public class Player {
     }
 
     // Payout for winning a Red or Black bet.
+    // Payout for winning Odd or Even bet.
     public void payoutColorBet(Bet bet) {
         chips += (2 * bet.betAmount);
+    }
+
+    public void payoutThirdBet(Bet bet) {
+        chips += (3 * bet.betAmount);
     }
 }
 
