@@ -41,9 +41,9 @@ public class Wheel {
             else {block = "Block 3";}
 
             // Setting the row flag.
-            if ((i%3) == 1) {row = "Row 1";}
-            else if ((i%3) == 2) {row = "Row 2";}
-            else {row = "Row 3";}
+            if ((i%3) == 1) {row = "Row One";}
+            else if ((i%3) == 2) {row = "Row Two";}
+            else {row = "Row Three";}
 
             Space newSpace = new Space(i, redBlk, oddEven, block, row);
             spaces[i-1] = newSpace;

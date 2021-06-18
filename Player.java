@@ -138,6 +138,59 @@ public class Player {
         } 
     }
 
+    private void betRows() {
+        System.out.println("\t\tWhich Row? (1), (2), (3)");
+        String thirdSelected = cin.next();
+        int playerBetAmount;
+
+        if ( thirdSelected.matches("1(.*)") ) {
+            System.out.print("\t\t\tHow much do you want to bet on the first row?: ");
+            playerBetAmount = cin.nextInt();
+            chips -= playerBetAmount;
+            bets.add(new Bet("Row One", playerBetAmount));
+        }
+        else if ( thirdSelected.matches("2(.*)") ) {
+            System.out.print("\t\t\tHow much do you want to bet on the second row?: ");
+            playerBetAmount = cin.nextInt();
+            chips -= playerBetAmount;
+            bets.add(new Bet("Row Two", playerBetAmount));
+        }
+        else if ( thirdSelected.matches("3(.*)") ) {
+            System.out.print("\t\t\tHow much do you want to bet on the third row?: ");
+            playerBetAmount = cin.nextInt();
+            chips -= playerBetAmount;
+            bets.add(new Bet("Row Three", playerBetAmount));
+        }
+        else {
+            System.out.print("\t\t\tInvalid Selection, Do you wish to bet on Thirds? (Y/N): ");
+            String continueBetting = cin.next();
+            if ( continueBetting.matches("Y(.*)") || continueBetting.matches("y(.*)") ) {
+                betRows();
+            }
+        } 
+    }
+
+    private void betIndividualNumbers() {
+        System.out.print("\t\tWhich Number? 1-36: ");
+        int numberSelected = cin.nextInt();
+        int playerBetAmount;
+        
+        if ( numberSelected < 1 || numberSelected > 36 ) {
+            System.out.print("\t\t\tInvalid Selection, Do you wish to bet on individual numbers? (Y/N): ");
+            String continueBetting = cin.next();
+            if ( continueBetting.matches("Y(.*)") || continueBetting.matches("y(.*)") ) {
+                betRows();
+            }
+        }
+        else {
+            System.out.print("\t\t\tHow much do you want to bet on " + numberSelected + "?: ");
+            playerBetAmount = cin.nextInt();
+            chips -= playerBetAmount;
+            bets.add(new Bet(String.valueOf(numberSelected), playerBetAmount));
+        }
+
+    }
+
 
     // How the Player decides what he wants to bet on.
     public void placeBets()
@@ -183,13 +236,13 @@ public class Player {
 
                 // Rows
                 case 4:
-                    // betRows();
+                    betRows();
                     continueBetting = setContinueBettingFlag();
                     break;
                 
                 // Individual Numbers
                 case 5:
-                    // betIndividualNumbers();
+                    betIndividualNumbers();
                     continueBetting = setContinueBettingFlag();
                     break;
             }            
@@ -211,6 +264,7 @@ public class Player {
             }
         }
 
+        // Check Odd or Even
         for (int i = 0; i <bets.size(); i++ ) {
             if (winningSpace.getOddOrEven().matches(bets.get(i).betType)) {
                 payoutColorBet(bets.get(i));
@@ -221,6 +275,21 @@ public class Player {
         for (int i = 0; i < bets.size(); i++ ) {
             if ( winningSpace.getThird().matches(bets.get(i).betType) ) {
                 payoutThirdBet(bets.get(i));
+            }
+        }
+
+        // Check Rows
+        for (int i = 0; i < bets.size(); i++ ) {
+            if ( winningSpace.getRow().matches(bets.get(i).betType) ) {
+                payoutThirdBet(bets.get(i));
+            }
+        }
+
+        // Check Numbers
+        for (int i = 0; i < bets.size(); i++ ) {
+            int playerBetNumber = Integer.parseInt(bets.get(i).betType);
+            if ( winningSpace.getNumber() == playerBetNumber ) {
+                payoutNumberBet(bets.get(i));
             }
         }
     }
@@ -238,8 +307,14 @@ public class Player {
         chips += (2 * bet.betAmount);
     }
 
+    // Payout for winning a Third bet.
+    // Payout for winning a Row bet.
     public void payoutThirdBet(Bet bet) {
         chips += (3 * bet.betAmount);
+    }
+
+    public void payoutNumberBet(Bet bet) {
+        chips += (bet.betAmount * 36);
     }
 }
 

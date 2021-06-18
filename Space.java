@@ -3,6 +3,7 @@ public class Space {
     private String redBlk;     // 1 = red, 0 = black.
     private String oddEven;    // 1 = odd, 0 = even.
     private String block;      // 1-12 = 1, 13-24 = 2, 25 - 36 = 3
+    private String row;
 
     public Space(int number, String redBlk, String oddEven, String block, String row)
     {
@@ -11,6 +12,7 @@ public class Space {
         this.redBlk     = redBlk;
         this.oddEven    = oddEven;
         this.block      = block;
+        this.row        = row;
     }
 
     public int getNumber()
@@ -18,6 +20,13 @@ public class Space {
         return number;
     }
 
+    public String getRow()
+    {
+
+        // The rows are the remainder of the space number divided by 3.
+        return row;
+        
+    }
     public String getThird()
     {
         // Take the difference of the numbers 1-12 subtracted by 1 and divide by 12 to all ways get the product of 0. 
