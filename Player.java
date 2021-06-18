@@ -209,6 +209,7 @@ public class Player {
             if ( winningSpace.getColor().matches(bets.get(i).betType) ) {
                 payoutColorBet(bets.get(i));
             }
+        }
 
         // Check Odds or Evens
         int oddOrEven = winningSpace.getNumber() % 2;
@@ -219,22 +220,17 @@ public class Player {
         else {
             winningSpaceOddOrEven = "Odd";
         }
-        for (i = 0; i < bets.size(); i++ ) {
+        for (int i = 0; i < bets.size(); i++ ) {
             if ( winningSpaceOddOrEven == bets.get(i).betType ) {
                 payoutColorBet(bets.get(i));
             }
         }
 
         // Check Thirds
-        for (i = 0; i < bets.size(); i++ ) {
+        for (int i = 0; i < bets.size(); i++ ) {
             if ( winningSpace.getThird().matches(bets.get(i).betType) ) {
                 payoutThirdBet(bets.get(i));
             }
-        }
-
-        // Check Rows
-
-        // Check Individual Numbers
         }
     }
 
