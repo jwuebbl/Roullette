@@ -1,24 +1,22 @@
+
 public class Space {
     private int number;
     private String redBlk;     // "Red or Black"
-    private String oddEven;    // 1 = odd, 0 = even.
-    private String block;      // 1-12 = 1, 13-24 = 2, 25 - 36 = 3
     private String row;
 
-    public Space(int number, String redBlk, String oddEven, String block, String row)
+    public Space(int number, String redBlk, String row)
     {
         // Based on the number assign all the other values.
         this.number     = number;
         this.redBlk     = redBlk;
-        this.oddEven    = oddEven;
-        this.block      = block;
         this.row        = row;
     }
 
-    public int getNumber()
+        public int getNumber()
     {
         return number;
     }
+
 
     public String getRow()
     {

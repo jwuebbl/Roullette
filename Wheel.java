@@ -7,8 +7,6 @@ public class Wheel {
     Wheel()
     {
         String redBlk;
-        String oddEven;
-        String block;
         String row;
 
         // Creates all the spaces that are not green.
@@ -32,26 +30,18 @@ public class Wheel {
                 if ((i%2) == 0) {redBlk = "Red";} else {redBlk = "Black";}
             }
 
-            // Setting the oddEven flag.
-            if ((i%2) == 0) {oddEven = "Even";} else {oddEven = "Odd";}
-
-            // Setting the block flag.
-            if (i < 13) {block = "Block 1";}
-            else if (i > 12 && i < 25) {block = "Block 2";}
-            else {block = "Block 3";}
-
             // Setting the row flag.
             if ((i%3) == 1) {row = "Row One";}
             else if ((i%3) == 2) {row = "Row Two";}
             else {row = "Row Three";}
 
-            Space newSpace = new Space(i, redBlk, oddEven, block, row);
+            Space newSpace = new Space(i, redBlk, row);
             spaces[i-1] = newSpace;
         }
 
         // Last 2 are the greenNumbers 0 and 00
-        spaces[36] = new Space(37, "Green", "Green", "Green", "Green");
-        spaces[37] = new Space(37, "Green", "Green", "Green", "Green");
+        spaces[36] = new Space(37, "Green", "Green");
+        spaces[37] = new Space(37, "Green", "Green");
 
         System.out.println("Wheel Successfully Created.");
     }
