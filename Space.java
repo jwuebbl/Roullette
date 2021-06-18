@@ -1,6 +1,6 @@
 public class Space {
     private int number;
-    private String redBlk;     // 1 = red, 0 = black.
+    private String redBlk;     // "Red or Black"
     private String oddEven;    // 1 = odd, 0 = even.
     private String block;      // 1-12 = 1, 13-24 = 2, 25 - 36 = 3
     private String row;
@@ -59,12 +59,7 @@ public class Space {
     }
 
     public String getColor() {
-        if ( redBlk.matches("1") ) {
-            return "Red";
-        }
-        else {
-            return "Black";
-        }
+        return redBlk;
     }
     
     public String toString() {
