@@ -129,21 +129,37 @@ public class Player {
             betSelection = cin.nextInt();
 
             // Player placing bets.
-            // Each print will start with atleast 2 tabs.
+            // Style Note: Each print will start with atleast 2 tabs.
             switch (betSelection) {
+                // Red or Black
                 case 1:
-                    // Red or Black
                     betRedOrBlack();
                     continueBetting = setContinueBettingFlag();
                     break;
-
+                
+                // Odd or Even
                 case 2:
-                    // Odd or Even
                     betOddOrEven();
                     continueBetting = setContinueBettingFlag();
                     break;
 
+                // Thirds
+                case 3:
+                    // betThirds();
+                    continueBetting = setContinueBettingFlag();
+                    break;
+
+                // Rows
+                case 4:
+                    // betRows();
+                    continueBetting = setContinueBettingFlag();
+                    break;
                 
+                // Individual Numbers
+                case 5:
+                    // betIndividualNumbers();
+                    continueBetting = setContinueBettingFlag();
+                    break;
             }            
         }
         cin.close();
