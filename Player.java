@@ -135,11 +135,15 @@ public class Player {
                     // Red or Black
                     betRedOrBlack();
                     continueBetting = setContinueBettingFlag();
+                    break;
 
                 case 2:
                     // Odd or Even
                     betOddOrEven();
                     continueBetting = setContinueBettingFlag();
+                    break;
+
+                
             }            
         }
         cin.close();
