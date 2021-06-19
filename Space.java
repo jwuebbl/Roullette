@@ -12,11 +12,37 @@ public class Space {
         this.row        = row;
     }
 
-        public int getNumber()
-    {
-        return number;
-    }
+    // Building a constructor that just takes in the number
+    // to decide the different fields.
+    //      This will mean the logic is only done 1 term per tile built.
+    //      Which it already is in the Wheel class, but having it here centralizes
+    //      all of the attribute of the Space class.
+    public Space(int spaceNumber) {
+        // Assigns the number attribute for checking against individual spaces.
+        this.number = spaceNumber;
+        // Setting the redBlk flag.
+        if (spaceNumber < 11)
+        {   
+            if ((spaceNumber%2) == 0) {redBlk = "Black";} else {redBlk = "Red";}
+        }
+        else if (spaceNumber > 10 && spaceNumber < 19)
+        {
+            if ((spaceNumber%2) == 0) {redBlk = "Red";} else {redBlk = "Black";}
+        }
+        else if (spaceNumber > 18 && spaceNumber < 29)
+        {
+            if ((spaceNumber%2) == 0) {redBlk = "Black";} else {redBlk = "Red";}
+        }
+        else
+        {
+            if ((spaceNumber%2) == 0) {redBlk = "Red";} else {redBlk = "Black";}
+        }
 
+        // Setting the row flag.
+        if ((spaceNumber%3) == 1) {this.row = "Row One";}
+        else if ((spaceNumber%3) == 2) {this.row = "Row Two";}
+        else {this.row = "Row Three";}
+    }
 
     public String getRow()
     {
@@ -58,6 +84,10 @@ public class Space {
 
     public String getColor() {
         return redBlk;
+    }
+
+    public int getNumber() {
+        return number;
     }
     
     public String toString() {
