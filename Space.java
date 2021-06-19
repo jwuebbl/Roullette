@@ -6,11 +6,12 @@ public class Space {
     private String row;
     private String third;
 
-    
+
     public Space(int spaceNumber) {
-        // Assigns the number attribute for checking against individual spaces.
+        // Setting the space's number attribute.
         this.number = spaceNumber;
-        // Setting the redBlk flag.
+
+        // Setting the redBlk String.
         if (spaceNumber < 11)
         {   
             if ((spaceNumber%2) == 0) {redBlk = "Black";} else {redBlk = "Red";}
@@ -35,7 +36,7 @@ public class Space {
             oddEven =  "Even";
         }
 
-        // Setting the Third flag.
+        // Setting the third String.
         int whichThird = ( spaceNumber - 1 ) / 12;
         if ( whichThird == 0 ) {
             this.third =  "First Third";
@@ -47,23 +48,23 @@ public class Space {
             this.third = "Third Third";
         }
 
-        // Setting the row flag.
+        // Setting the row String.
         if ((spaceNumber%3) == 1) {this.row = "Row One";}
         else if ((spaceNumber%3) == 2) {this.row = "Row Two";}
         else {this.row = "Row Three";}
 
-        if ( spaceNumber > 36 ) {
+        // Setting the Green Spaces.
+        if ( spaceNumber > 36 || spaceNumber < 1 ) {
             redBlk = "Green";
         }
     }
 
+    // Getters
     public String getRow()
     {
-
-        // The rows are the remainder of the space number divided by 3.
         return row;
-        
     }
+
     public String getThird()
     {
         return third;
@@ -81,6 +82,8 @@ public class Space {
         return number;
     }
     
+
+    // toString
     public String toString() {
         return redBlk + " " + number;
     }

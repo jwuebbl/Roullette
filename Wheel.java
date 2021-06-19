@@ -6,28 +6,11 @@ public class Wheel {
 
     Wheel()
     {
-        String redBlk;
-        String row;
-
-        // Creates all the spaces that are not green.
-        for (int i = 1; i <= spaces.length - 2; i++)
+        for (int i = 0; i < spaces.length; i++)
         {
-
-
-            // // Setting the row flag.
-            // if ((i%3) == 1) {row = "Row One";}
-            // else if ((i%3) == 2) {row = "Row Two";}
-            // else {row = "Row Three";}
-
             Space newSpace = new Space(i);
-            spaces[i-1] = newSpace;
+            spaces[i] = newSpace;
         }
-
-        // Last 2 are the greenNumbers 0 and 00
-        spaces[36] = new Space(0);
-        spaces[37] = new Space(37);
-
-        System.out.println("Wheel Successfully Created.");
     }
 
     public Space spin()
@@ -35,5 +18,11 @@ public class Wheel {
         Random rand = new Random(); // No argument constructor pulls the current time for Random().
         int temp = rand.nextInt(39);
         return spaces[temp];
+    }
+
+    public void printWheel() {
+        for (int i = 0; i < spaces.length; i++ ) {
+            System.out.println(spaces[i].toString());
+        }
     }
 }
