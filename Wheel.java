@@ -24,8 +24,8 @@ public class Wheel {
         }
 
         // Last 2 are the greenNumbers 0 and 00
-        spaces[36] = new Space(37, "Green", "Green");
-        spaces[37] = new Space(37, "Green", "Green");
+        spaces[36] = new Space(0);
+        spaces[37] = new Space(37);
 
         System.out.println("Wheel Successfully Created.");
     }
